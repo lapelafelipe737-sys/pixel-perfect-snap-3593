@@ -119,7 +119,7 @@ function VolunteerPage() {
   );
 }
 
-function Field({ id, label, hint, error, className = '', children }: { id: string; label: string; hint?: string | undefined; error?: string | undefined; className?: string | undefined; children: ReactElement }) {
+function Field({ id, label, hint, error, className = '', children }: { id: string; label: string; hint?: string | undefined; error?: string | undefined; className?: string | undefined; children: ReactElement<Record<string, unknown>> }) {
   const control = cloneElement(children, { 'aria-invalid': Boolean(error), 'aria-describedby': error ? `${id}-error` : undefined });
   return <div className={`field ${className}`}><div className="flex items-baseline justify-between gap-3"><label htmlFor={id}>{label}</label>{hint && <span className="text-xs text-muted-foreground">{hint}</span>}</div><div className={error ? 'field-control field-error' : 'field-control'}>{control}</div>{error && <p id={`${id}-error`} className="text-xs font-semibold text-destructive">{error}</p>}</div>;
 }
