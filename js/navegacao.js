@@ -34,6 +34,7 @@ async function renderizar(url) {
 
 export function iniciarNavegacao() {
   document.addEventListener("click", (evento) => {
+    if (!(evento.target instanceof Element)) return;
     const link = evento.target.closest("a[data-nav]");
     if (!link) return;
     const destino = destinoDoLink(link);

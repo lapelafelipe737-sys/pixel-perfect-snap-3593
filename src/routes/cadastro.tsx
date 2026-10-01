@@ -46,7 +46,6 @@ type Errors = Record<string, string>;
 function VolunteerPage() {
   const [errors, setErrors] = useState<Errors>({});
   const [success, setSuccess] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -57,7 +56,6 @@ function VolunteerPage() {
       const field = form.elements.namedItem(name);
       if (field instanceof HTMLInputElement && field.type === "checkbox") {
         field.checked = Boolean(value);
-        setTermsAccepted(Boolean(value));
       } else if (
         field instanceof HTMLInputElement ||
         field instanceof HTMLSelectElement ||
@@ -97,7 +95,6 @@ function VolunteerPage() {
       return;
     }
     form.reset();
-    setTermsAccepted(false);
     setErrors({});
     setSuccess(true);
     window.setTimeout(() => setSuccess(false), 5000);
@@ -363,11 +360,9 @@ function VolunteerPage() {
                   name="terms"
                   type="checkbox"
                   required
-                  checked={termsAccepted}
                   onChange={(event) => {
-                    const checked = event.currentTarget.checked;
-                    setTermsAccepted(checked);
-                    if (checked) setErrors((current) => ({ ...current, terms: "" }));
+                    if (event.currentTarget.checked)
+                      setErrors((current) => ({ ...current, terms: "" }));
                   }}
                   className="mt-1 size-5 shrink-0 accent-primary"
                   aria-invalid={Boolean(errors["terms"])}
