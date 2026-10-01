@@ -23,7 +23,7 @@
 }
 @media (max-width: 768px) {
   .menu-botao {
-    display: block;
+    display: grid;
   }
   .menu {
     position: absolute;

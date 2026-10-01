@@ -107,8 +107,18 @@ a {
 }
 .menu-botao {
   display: none;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
   border: 0;
   background: transparent;
+  font-size: 1.6rem;
+}
+.menu-botao[aria-expanded="true"] {
+  font-size: 0;
+}
+.menu-botao[aria-expanded="true"]::before {
+  content: "×";
   font-size: 1.6rem;
 }
 .pular {
