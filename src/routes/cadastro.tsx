@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, HeartHandshake, ShieldCheck, UserRound } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { type FocusEvent, type FormEvent, type ReactElement, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { interestOptions, maskCep, maskCpf, maskPhone, saveVolunteer, volunteerSchema } from "@/lib/volunteer";
@@ -32,7 +32,8 @@ function VolunteerPage() {
       result.error.issues.forEach((issue) => { const field = String(issue.path[0]); if (!nextErrors[field]) nextErrors[field] = issue.message; });
       setErrors(nextErrors);
       setSuccess(false);
-      document.getElementById(Object.keys(nextErrors)[0])?.focus();
+      const firstInvalidField = Object.keys(nextErrors)[0];
+      if (firstInvalidField) document.getElementById(firstInvalidField)?.focus();
       return;
     }
     saveVolunteer({ ...result.data, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
@@ -40,7 +41,7 @@ function VolunteerPage() {
     window.setTimeout(() => setSuccess(false), 5000);
   }
 
-  function validateField(event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) {
+  function validateField(event: FocusEvent<HTMLInputElement | HTMLSelectElement>) {
     const form = event.currentTarget.form;
     if (!form) return;
     const values = Object.fromEntries(new FormData(form).entries());
@@ -98,6 +99,6 @@ function VolunteerPage() {
   );
 }
 
-function Field({ id, label, hint, error, className = '', children }: { id: string; label: string; hint?: string; error?: string; className?: string; children: React.ReactElement }) {
+function Field({ id, label, hint, error, className = '', children }: { id: string; label: string; hint?: string | undefined; error?: string | undefined; className?: string | undefined; children: ReactElement }) {
   return <div className={`field ${className}`}><div className="flex items-baseline justify-between gap-3"><label htmlFor={id}>{label}</label>{hint && <span className="text-xs text-muted-foreground">{hint}</span>}</div><div className={error ? 'field-control field-error' : 'field-control'}>{children}</div>{error && <p id={`${id}-error`} className="text-xs font-semibold text-destructive">{error}</p>}</div>;
 }
