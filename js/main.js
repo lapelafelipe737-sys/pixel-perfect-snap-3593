@@ -6,7 +6,7 @@ function iniciarModalProjetos() {
   const modal = document.querySelector("[data-modal-projeto]");
   if (!(modal instanceof HTMLDialogElement) || modal.dataset.iniciado) return;
   modal.dataset.iniciado = "true";
-  document.addEventListener("click", (evento) => {
+  document.querySelector("[data-projetos]")?.addEventListener("click", (evento) => {
     if (!(evento.target instanceof Element)) return;
     const botao = evento.target.closest("[data-abrir-modal]");
     if (!(botao instanceof HTMLButtonElement)) return;
