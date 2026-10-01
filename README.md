@@ -1,29 +1,45 @@
-# Welcome to your Lovable project
+# ONG Esperança
 
-This project was built with [Lovable](https://lovable.dev).
+Plataforma institucional responsiva para apresentar a ONG Esperança, divulgar projetos sociais e cadastrar pessoas voluntárias.
 
-## Build with Lovable
+## Tecnologias
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- React 19 e TypeScript
+- TanStack Start e TanStack Router
+- Tailwind CSS 4
+- Zod para validação
+- Lucide para ícones
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Estrutura
 
-## Development
+- `src/routes/`: páginas Início, Projetos e Cadastro
+- `src/components/`: cabeçalho, rodapé e controles reutilizáveis
+- `src/lib/`: validação, máscaras e armazenamento dos cadastros
+- `src/assets/`: imagens otimizadas da aplicação
+- `src/styles.css`: sistema visual e regras responsivas
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Como executar
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+```bash
+bun install
+bun run dev
 ```
 
-## Built with
+A aplicação estará disponível no endereço informado pelo terminal.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Produção e deploy
+
+```bash
+bun run build
+bun run preview
+```
+
+O diretório gerado pelo comando de build pode ser publicado pela Lovable ou pelo provedor compatível com TanStack Start escolhido para o projeto.
+
+## Dados do formulário
+
+Os cadastros são validados no navegador e armazenados em `localStorage` com serialização JSON, conforme o escopo do projeto. Não há envio para servidor.
+
+## Versionamento Git
+
+Crie uma branch para cada alteração, use commits objetivos e abra um pull request antes de integrar à branch principal. O projeto não inclui dependências geradas nem arquivos de ambiente no repositório.
