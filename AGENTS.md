@@ -14,4 +14,4 @@
 - Keep shared site chrome in the root route and page content in dedicated TanStack route files so navigation and SEO remain consistent.
 - Validate volunteer data with the shared Zod schema before browser-local persistence so every entry follows the same format.
 - Keep the TanStack application as the primary runtime and maintain the parallel academic HTML/CSS/ES-module version as a functionally equivalent deliverable.
-- Copy the root academic folders into the client build through the Vite plugin so `/html/index.html` remains deployable without duplicating source files.
+- Sync the root academic folders into `public/` before production builds so `/html/index.html` remains deployable while root files stay canonical.

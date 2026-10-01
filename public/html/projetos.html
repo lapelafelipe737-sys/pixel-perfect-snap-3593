@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Projetos sociais da ONG Esperança." />
+    <title>Projetos sociais — ONG Esperança</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container">
+        <a class="marca" href="index.html" data-nav
+          ><img src="../imagens/logo-ong.svg" alt="" /><span>ONG Esperança</span></a
+        ><button
+          class="menu-botao"
+          type="button"
+          data-menu
+          aria-label="Abrir ou fechar menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <nav class="menu" data-menu-lista aria-label="Navegação principal" hidden>
+          <a href="index.html" data-nav>Início</a><a href="projetos.html" data-nav>Projetos</a
+          ><a href="cadastro.html" data-nav>Voluntariado</a>
+        </nav>
+      </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+      <section class="secao secao-azul">
+        <div class="container">
+          <p class="sobretitulo">Projetos sociais</p>
+          <h1>A transformação acontece quando fazemos juntos.</h1>
+          <p>Cada iniciativa nasce da escuta e cresce com a participação da comunidade.</p>
+        </div>
+      </section>
+      <section class="secao">
+        <div class="container projetos" data-projetos aria-live="polite"></div>
+      </section>
+      <section class="secao secao-azul">
+        <div class="container grade-12">
+          <div class="texto-principal">
+            <h2>Sua doação vira oportunidade.</h2>
+            <p>
+              Com R$ 50, ajudamos a manter materiais educativos e alimentação para uma criança
+              durante uma semana.
+            </p>
+          </div>
+          <div class="texto-apoio">
+            <div class="acoes">
+              <a
+                class="botao botao-secundario"
+                href="mailto:contato@ongesperanca.org.br?subject=Quero%20fazer%20uma%20doação"
+                >Quero fazer uma doação</a
+              >
+              <a class="botao" href="cadastro.html" data-nav>Prefiro doar meu tempo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="rodape">
+      <div class="container">
+        <strong>ONG Esperança</strong>
+        <address>contato@ongesperanca.org.br</address>
+      </div>
+    </footer>
+  </body>
+</html>
