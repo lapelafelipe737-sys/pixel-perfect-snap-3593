@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, HeartHandshake, ShieldCheck, UserRound } from "lucide-react";
 import {
   cloneElement,
-  type FocusEvent,
+  type ChangeEvent,
   type FormEvent,
   type ReactElement,
   useEffect,
@@ -101,7 +101,7 @@ function VolunteerPage() {
   }
 
   function validateField(
-    event: FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) {
     const form = event.currentTarget.form;
     if (!form) return;
@@ -174,7 +174,7 @@ function VolunteerPage() {
                 minLength={3}
                 maxLength={100}
                 autoComplete="name"
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="email" label="E-mail" error={errors["email"]}>
@@ -185,7 +185,7 @@ function VolunteerPage() {
                 required
                 maxLength={255}
                 autoComplete="email"
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="cpf" label="CPF" hint="000.000.000-00" error={errors["cpf"]}>
@@ -201,7 +201,7 @@ function VolunteerPage() {
                 onInput={(event) => {
                   event.currentTarget.value = maskCpf(event.currentTarget.value);
                 }}
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="phone" label="Telefone" hint="(00) 00000-0000" error={errors["phone"]}>
@@ -218,11 +218,11 @@ function VolunteerPage() {
                 onInput={(event) => {
                   event.currentTarget.value = maskPhone(event.currentTarget.value);
                 }}
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="birthDate" label="Data de nascimento" error={errors["birthDate"]}>
-              <input id="birthDate" name="birthDate" type="date" required onBlur={validateField} />
+              <input id="birthDate" name="birthDate" type="date" required onChange={validateField} />
             </Field>
           </div>
 
@@ -244,7 +244,7 @@ function VolunteerPage() {
                 onInput={(event) => {
                   event.currentTarget.value = maskCep(event.currentTarget.value);
                 }}
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field
@@ -261,7 +261,7 @@ function VolunteerPage() {
                 minLength={5}
                 maxLength={160}
                 autoComplete="street-address"
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="city" label="Cidade" error={errors["city"]}>
@@ -273,7 +273,7 @@ function VolunteerPage() {
                 minLength={2}
                 maxLength={80}
                 autoComplete="address-level2"
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <Field id="state" label="Estado" error={errors["state"]}>
@@ -283,7 +283,7 @@ function VolunteerPage() {
                 required
                 autoComplete="address-level1"
                 defaultValue=""
-                onBlur={validateField}
+                onChange={validateField}
               >
                 <option value="" disabled>
                   Selecione
@@ -327,7 +327,7 @@ function VolunteerPage() {
               error={errors["interest"]}
               className="sm:col-span-2"
             >
-              <select id="interest" name="interest" required defaultValue="" onBlur={validateField}>
+              <select id="interest" name="interest" required defaultValue="" onChange={validateField}>
                 <option value="" disabled>
                   Como você gostaria de ajudar?
                 </option>
@@ -350,7 +350,7 @@ function VolunteerPage() {
                 minLength={10}
                 maxLength={500}
                 rows={5}
-                onBlur={validateField}
+                onChange={validateField}
               />
             </Field>
             <div className="sm:col-span-2">
@@ -360,6 +360,7 @@ function VolunteerPage() {
                   name="terms"
                   type="checkbox"
                   required
+                  onChange={validateField}
                   className="mt-1 size-5 shrink-0 accent-primary"
                   aria-invalid={Boolean(errors["terms"])}
                   aria-describedby={errors["terms"] ? "terms-error" : undefined}
