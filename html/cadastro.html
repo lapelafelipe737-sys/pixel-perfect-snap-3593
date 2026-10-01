@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Cadastro de voluntariado da ONG Esperança." />
+    <title>Seja voluntário — ONG Esperança</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container">
+        <a class="marca" href="index.html" data-nav
+          ><img src="../imagens/logo-ong.svg" alt="" /><span>ONG Esperança</span></a
+        ><button
+          class="menu-botao"
+          type="button"
+          data-menu
+          aria-label="Abrir ou fechar menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <nav class="menu" data-menu-lista aria-label="Navegação principal">
+          <a href="index.html" data-nav>Início</a><a href="projetos.html" data-nav>Projetos</a
+          ><a href="cadastro.html" data-nav>Voluntariado</a>
+        </nav>
+      </div>
+    </header>
+    <main id="conteudo">
+      <section class="secao secao-azul">
+        <div class="container">
+          <p class="sobretitulo">Voluntariado</p>
+          <h1>Seu tempo pode mudar uma história.</h1>
+        </div>
+      </section>
+      <section class="secao">
+        <div class="container grade-12">
+          <form class="formulario" data-formulario novalidate>
+            <h2>Cadastro de voluntário</h2>
+            <p>Todos os campos são obrigatórios.</p>
+            <div class="form-grid">
+              <div class="campo campo-largo">
+                <label for="name">Nome completo</label
+                ><input
+                  id="name"
+                  name="name"
+                  required
+                  minlength="3"
+                  maxlength="100"
+                  autocomplete="name"
+                  aria-describedby="name-erro"
+                />
+                <p class="erro" id="name-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="email">E-mail</label
+                ><input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="255"
+                  autocomplete="email"
+                  aria-describedby="email-erro"
+                />
+                <p class="erro" id="email-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="cpf">CPF</label
+                ><input
+                  id="cpf"
+                  name="cpf"
+                  required
+                  minlength="14"
+                  maxlength="14"
+                  pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                  inputmode="numeric"
+                  data-erro-padrao="Use o formato 000.000.000-00."
+                  aria-describedby="cpf-erro"
+                />
+                <p class="erro" id="cpf-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="phone">Telefone</label
+                ><input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  minlength="15"
+                  maxlength="15"
+                  pattern="\(\d{2}\) \d{5}-\d{4}"
+                  autocomplete="tel"
+                  data-erro-padrao="Use o formato (00) 00000-0000."
+                  aria-describedby="phone-erro"
+                />
+                <p class="erro" id="phone-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="cep">CEP</label
+                ><input
+                  id="cep"
+                  name="cep"
+                  required
+                  minlength="9"
+                  maxlength="9"
+                  pattern="\d{5}-\d{3}"
+                  autocomplete="postal-code"
+                  data-erro-padrao="Use o formato 00000-000."
+                  aria-describedby="cep-erro"
+                />
+                <p class="erro" id="cep-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="city">Cidade</label
+                ><input
+                  id="city"
+                  name="city"
+                  required
+                  minlength="2"
+                  maxlength="80"
+                  autocomplete="address-level2"
+                  aria-describedby="city-erro"
+                />
+                <p class="erro" id="city-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="state">Estado</label
+                ><select id="state" name="state" required aria-describedby="state-erro">
+                  <option value="">Selecione</option>
+                  <option>SP</option>
+                  <option>RJ</option>
+                  <option>MG</option>
+                  <option>PR</option>
+                  <option>RS</option>
+                  <option>BA</option>
+                  <option>PE</option>
+                  <option>CE</option>
+                  <option>SC</option>
+                  <option>GO</option>
+                  <option>DF</option>
+                </select>
+                <p class="erro" id="state-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="interest">Área de interesse</label
+                ><select id="interest" name="interest" required aria-describedby="interest-erro">
+                  <option value="">Selecione</option>
+                  <option>Educação</option>
+                  <option>Segurança alimentar</option>
+                  <option>Meio ambiente</option>
+                  <option>Comunicação</option>
+                  <option>Eventos</option>
+                </select>
+                <p class="erro" id="interest-erro"></p>
+              </div>
+              <div class="campo campo-largo">
+                <label for="message">Mensagem</label
+                ><textarea
+                  id="message"
+                  name="message"
+                  required
+                  minlength="10"
+                  maxlength="500"
+                  rows="5"
+                  aria-describedby="message-erro"
+                ></textarea>
+                <p class="erro" id="message-erro"></p>
+              </div>
+              <div class="campo campo-largo">
+                <div class="termos">
+                  <input
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    required
+                    aria-describedby="terms-erro"
+                  />
+                  <label for="terms">
+                    Concordo com o uso dos dados para contato sobre voluntariado.
+                  </label>
+                </div>
+                <p class="erro" id="terms-erro"></p>
+              </div>
+            </div>
+            <button class="botao" type="submit">Enviar cadastro</button>
+            <p class="sucesso" data-sucesso role="status" aria-live="polite" hidden>
+              Cadastro salvo com sucesso neste dispositivo.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="rodape">
+      <div class="container">
+        <strong>ONG Esperança</strong>
+        <address>contato@ongesperanca.org.br</address>
+      </div>
+    </footer>
+  </body>
+</html>

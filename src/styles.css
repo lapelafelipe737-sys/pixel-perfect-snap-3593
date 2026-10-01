@@ -44,8 +44,8 @@
   --card-foreground: oklch(0.25 0.03 160);
   --primary: oklch(0.34 0.09 159);
   --primary-foreground: oklch(0.98 0.01 95);
-  --secondary: oklch(0.86 0.15 91);
-  --secondary-foreground: oklch(0.25 0.055 120);
+  --secondary: oklch(0.72 0.12 227);
+  --secondary-foreground: oklch(0.18 0.04 240);
   --muted: oklch(0.95 0.018 96);
   --muted-foreground: oklch(0.48 0.03 157);
   --accent: oklch(0.64 0.18 36);
@@ -68,7 +68,7 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
-  button, a, input, select { letter-spacing: 0; }
+  button, a, input, select, textarea { letter-spacing: 0; }
   button, a { cursor: pointer; }
   :focus-visible { outline: 3px solid var(--color-ring); outline-offset: 3px; }
 }
@@ -85,14 +85,17 @@
 
 .field { display: flex; flex-direction: column; gap: 0.45rem; }
 .field label { font-size: 0.875rem; font-weight: 700; }
-.field-control input, .field-control select { width: 100%; min-height: 3rem; border: 1px solid var(--color-input); border-radius: var(--radius-sm); background: var(--color-background); padding: 0.65rem 0.8rem; color: var(--color-foreground); }
-.field-control input:focus, .field-control select:focus { border-color: var(--color-primary); outline: 3px solid color-mix(in oklab, var(--color-ring) 20%, transparent); }
-.field-error input, .field-error select { border-color: var(--color-destructive); }
+.field-control input, .field-control select, .field-control textarea { width: 100%; min-height: 3rem; border: 1px solid var(--color-input); border-radius: var(--radius-sm); background: var(--color-background); padding: 0.65rem 0.8rem; color: var(--color-foreground); }
+.field-control textarea { resize: vertical; }
+.field-control input:focus, .field-control select:focus, .field-control textarea:focus { border-color: var(--color-primary); outline: 3px solid color-mix(in oklab, var(--color-ring) 20%, transparent); }
+.field-error input, .field-error select, .field-error textarea { border-color: var(--color-destructive); }
 
 @media (min-width: 320px) { .site-container { width: min(100% - 2rem, 76rem); } }
-@media (min-width: 480px) { .site-container { width: min(100% - 3rem, 76rem); } }
+@media (min-width: 400px) { .site-container { width: min(100% - 2.5rem, 76rem); } }
+@media (min-width: 576px) { .site-container { width: min(100% - 3rem, 76rem); } }
 @media (min-width: 768px) { .site-container { width: min(100% - 4rem, 76rem); } }
-@media (min-width: 1024px) { .site-container { width: min(100% - 5rem, 76rem); } }
+@media (min-width: 992px) { .site-container { width: min(100% - 5rem, 76rem); } }
+@media (min-width: 1200px) { .site-container { width: min(100% - 5rem, 76rem); } }
 @media (min-width: 1440px) { .site-container { width: min(100% - 6rem, 80rem); } }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
