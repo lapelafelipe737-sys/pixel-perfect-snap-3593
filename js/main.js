@@ -15,8 +15,7 @@ function iniciarModalProjetos() {
     const titulo = modal.querySelector("[data-modal-titulo]");
     const texto = modal.querySelector("[data-modal-texto]");
     if (titulo) titulo.textContent = projeto.titulo;
-    if (texto)
-      texto.textContent = `${projeto.descricao} Impacto atual: ${projeto.impacto}.`;
+    if (texto) texto.textContent = `${projeto.descricao} Impacto atual: ${projeto.impacto}.`;
     modal.showModal();
   });
   modal.querySelector("[data-fechar-modal]")?.addEventListener("click", () => modal.close());

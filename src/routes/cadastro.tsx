@@ -222,7 +222,13 @@ function VolunteerPage() {
               />
             </Field>
             <Field id="birthDate" label="Data de nascimento" error={errors["birthDate"]}>
-              <input id="birthDate" name="birthDate" type="date" required onChange={validateField} />
+              <input
+                id="birthDate"
+                name="birthDate"
+                type="date"
+                required
+                onChange={validateField}
+              />
             </Field>
           </div>
 
@@ -327,7 +333,13 @@ function VolunteerPage() {
               error={errors["interest"]}
               className="sm:col-span-2"
             >
-              <select id="interest" name="interest" required defaultValue="" onChange={validateField}>
+              <select
+                id="interest"
+                name="interest"
+                required
+                defaultValue=""
+                onChange={validateField}
+              >
                 <option value="" disabled>
                   Como você gostaria de ajudar?
                 </option>
