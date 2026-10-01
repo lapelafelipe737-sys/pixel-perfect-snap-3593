@@ -20,7 +20,8 @@ export function iniciarNavegacao() {
   window.addEventListener("popstate", () => {
     const arquivo = window.location.pathname.split("/").pop() || "index.html";
     if (!rotas.has(arquivo)) {
-      document.querySelector("main").innerHTML = '<section class="secao pagina-erro"><h1>Página não encontrada</h1><p>O endereço informado não existe.</p><a class="botao" href="index.html">Voltar ao início</a></section>';
+      document.querySelector("main").innerHTML =
+        '<section class="secao pagina-erro"><h1>Página não encontrada</h1><p>O endereço informado não existe.</p><a class="botao" href="index.html">Voltar ao início</a></section>';
       return;
     }
     window.location.assign(window.location.href);
