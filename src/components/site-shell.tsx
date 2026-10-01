@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, HeartHandshake, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { HeartHandshake, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -20,16 +20,7 @@ export function SiteHeader() {
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-1 md:flex">
           <Link to="/" activeOptions={{ exact: true }} className="nav-link">Início</Link>
-          <div className="group relative">
-            <Link to="/projetos" className="nav-link flex items-center gap-1">
-              Projetos <ChevronDown className="size-4" aria-hidden="true" />
-            </Link>
-            <div className="invisible absolute left-0 top-full w-52 translate-y-1 border border-border bg-background p-2 opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              <Link to="/projetos" hash="educacao" className="dropdown-link">Educação que Transforma</Link>
-              <Link to="/projetos" hash="alimento" className="dropdown-link">Mesa Compartilhada</Link>
-              <Link to="/projetos" hash="verde" className="dropdown-link">Bairro Mais Verde</Link>
-            </div>
-          </div>
+          <Link to="/projetos" className="nav-link">Projetos</Link>
           <Link to="/cadastro" className="nav-link">Voluntariado</Link>
           <Button asChild size="sm" className="ml-2"><Link to="/projetos" hash="doacao">Quero ajudar</Link></Button>
         </nav>
