@@ -84,7 +84,16 @@ function VolunteerPage() {
       if (firstInvalidField) document.getElementById(firstInvalidField)?.focus();
       return;
     }
-    saveVolunteer({ ...result.data, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
+    const saved = saveVolunteer({
+      ...result.data,
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString(),
+    });
+    if (!saved) {
+      setErrors({ form: "Não foi possível salvar neste dispositivo. Libere espaço e tente novamente." });
+      setSuccess(false);
+      return;
+    }
     form.reset();
     setTermsAccepted(false);
     setErrors({});
@@ -379,7 +388,7 @@ function VolunteerPage() {
               role="alert"
               className="mt-7 border-l-4 border-destructive bg-error-soft p-4 text-sm text-destructive"
             >
-              Revise os campos destacados antes de enviar.
+              {errors["form"] ?? "Revise os campos destacados antes de enviar."}
             </div>
           )}
           <div className="mt-8 flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">

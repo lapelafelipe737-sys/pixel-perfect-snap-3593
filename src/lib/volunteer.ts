@@ -74,20 +74,21 @@ export function isValidCpf(value: string) {
 }
 
 export function saveVolunteer(volunteer: Volunteer) {
-  const key = "ong-esperanca-voluntarios";
-  const currentValue = localStorage.getItem(key);
-  let volunteers: Volunteer[] = [];
+  try {
+    const key = "ong-esperanca-voluntarios";
+    const currentValue = localStorage.getItem(key);
+    let volunteers: Volunteer[] = [];
 
-  if (currentValue) {
-    try {
+    if (currentValue) {
       const parsed: unknown = JSON.parse(currentValue);
       if (Array.isArray(parsed)) volunteers = parsed as Volunteer[];
-    } catch {
-      volunteers = [];
     }
-  }
 
-  localStorage.setItem(key, JSON.stringify([...volunteers, volunteer]));
+    localStorage.setItem(key, JSON.stringify([...volunteers, volunteer]));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function loadLatestVolunteer(): Volunteer | null {

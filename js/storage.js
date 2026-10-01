@@ -10,8 +10,13 @@ export function obterCadastros() {
 }
 
 export function salvarCadastro(cadastro) {
-  const cadastros = obterCadastros();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...cadastros, cadastro]));
+  try {
+    const cadastros = obterCadastros();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...cadastros, cadastro]));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function obterUltimoCadastro() {

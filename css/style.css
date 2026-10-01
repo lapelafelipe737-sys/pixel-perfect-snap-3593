@@ -210,7 +210,10 @@ p {
 }
 .secao-azul {
   background: var(--azul);
-  color: var(--texto);
+  color: var(--branco);
+}
+.secao-azul .sobretitulo {
+  color: var(--branco);
 }
 .texto-principal {
   grid-column: 1 / span 5;
@@ -330,6 +333,11 @@ p {
   padding: 1rem;
   color: var(--sucesso);
   font-weight: 700;
+}
+.sucesso.falha {
+  border-left-color: var(--erro);
+  background: var(--branco);
+  color: var(--erro);
 }
 .rodape {
   background: var(--verde-escuro);

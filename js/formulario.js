@@ -12,6 +12,20 @@ export const mascaraTelefone = (valor) =>
     .replace(/(\d{5})(\d)/, "$1-$2");
 export const mascaraCep = (valor) => apenasDigitos(valor, 8).replace(/(\d{5})(\d)/, "$1-$2");
 
+function cpfValido(valor) {
+  const digitos = valor.replace(/\D/g, "");
+  if (digitos.length !== 11 || /^(\d)\1{10}$/.test(digitos)) return false;
+  const calcular = (tamanho) => {
+    const soma = digitos
+      .slice(0, tamanho)
+      .split("")
+      .reduce((total, digito, indice) => total + Number(digito) * (tamanho + 1 - indice), 0);
+    const resto = (soma * 10) % 11;
+    return resto === 10 ? 0 : resto;
+  };
+  return calcular(9) === Number(digitos[9]) && calcular(10) === Number(digitos[10]);
+}
+
 function mostrarErro(campo, mensagem) {
   const erro = document.getElementById(`${campo.id}-erro`);
   campo.setAttribute("aria-invalid", String(Boolean(mensagem)));
@@ -25,6 +39,7 @@ function validarCampo(campo) {
   if (campo.validity.tooLong) return `Use no máximo ${campo.maxLength} caracteres.`;
   if (campo.validity.patternMismatch)
     return campo.dataset.erroPadrao || "Revise o formato informado.";
+  if (campo.name === "cpf" && !cpfValido(campo.value)) return "Digite um CPF válido.";
   return "";
 }
 
@@ -65,17 +80,24 @@ export function iniciarFormulario() {
     evento.preventDefault();
     const campos = [...formulario.querySelectorAll("input, select, textarea")];
     campos.forEach((campo) => mostrarErro(campo, validarCampo(campo)));
-    if (!formulario.checkValidity()) {
-      campos.find((campo) => !campo.validity.valid)?.focus();
+    const primeiroInvalido = campos.find((campo) => validarCampo(campo));
+    if (!formulario.checkValidity() || primeiroInvalido) {
+      primeiroInvalido?.focus();
       return;
     }
     const dados = Object.fromEntries(new FormData(formulario).entries());
-    salvarCadastro({
+    const salvo = salvarCadastro({
       ...dados,
       terms: true,
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
     });
-    document.querySelector("[data-sucesso]").hidden = false;
+    const mensagem = document.querySelector("[data-sucesso]");
+    if (!mensagem) return;
+    mensagem.textContent = salvo
+      ? "Cadastro salvo com sucesso neste dispositivo."
+      : "Não foi possível salvar neste dispositivo. Libere espaço e tente novamente.";
+    mensagem.classList.toggle("falha", !salvo);
+    mensagem.hidden = false;
   });
 }

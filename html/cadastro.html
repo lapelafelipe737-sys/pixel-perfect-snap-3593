@@ -24,7 +24,7 @@
         >
           ☰
         </button>
-        <nav class="menu" data-menu-lista aria-label="Navegação principal">
+        <nav class="menu" data-menu-lista aria-label="Navegação principal" hidden>
           <a href="index.html" data-nav>Início</a><a href="projetos.html" data-nav>Projetos</a
           ><a href="cadastro.html" data-nav>Voluntariado</a>
         </nav>
@@ -101,6 +101,18 @@
                 <p class="erro" id="phone-erro"></p>
               </div>
               <div class="campo">
+                <label for="birthDate">Data de nascimento</label
+                ><input
+                  id="birthDate"
+                  name="birthDate"
+                  type="date"
+                  required
+                  autocomplete="bday"
+                  aria-describedby="birthDate-erro"
+                />
+                <p class="erro" id="birthDate-erro"></p>
+              </div>
+              <div class="campo">
                 <label for="cep">CEP</label
                 ><input
                   id="cep"
@@ -114,6 +126,19 @@
                   aria-describedby="cep-erro"
                 />
                 <p class="erro" id="cep-erro"></p>
+              </div>
+              <div class="campo campo-largo">
+                <label for="address">Endereço</label
+                ><input
+                  id="address"
+                  name="address"
+                  required
+                  minlength="5"
+                  maxlength="160"
+                  autocomplete="street-address"
+                  aria-describedby="address-erro"
+                />
+                <p class="erro" id="address-erro"></p>
               </div>
               <div class="campo">
                 <label for="city">Cidade</label
@@ -143,6 +168,22 @@
                   <option>SC</option>
                   <option>GO</option>
                   <option>DF</option>
+                  <option>AC</option>
+                  <option>AL</option>
+                  <option>AP</option>
+                  <option>AM</option>
+                  <option>ES</option>
+                  <option>MA</option>
+                  <option>MT</option>
+                  <option>MS</option>
+                  <option>PA</option>
+                  <option>PB</option>
+                  <option>PI</option>
+                  <option>RN</option>
+                  <option>RO</option>
+                  <option>RR</option>
+                  <option>SE</option>
+                  <option>TO</option>
                 </select>
                 <p class="erro" id="state-erro"></p>
               </div>
