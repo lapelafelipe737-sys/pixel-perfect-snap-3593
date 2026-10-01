@@ -343,10 +343,7 @@ function VolunteerPage() {
               />
             </Field>
             <div className="sm:col-span-2">
-              <label
-                htmlFor="terms"
-                className="flex cursor-pointer items-start gap-3 text-sm leading-6"
-              >
+              <label className="flex cursor-pointer items-start gap-3 text-sm leading-6">
                 <input
                   id="terms"
                   name="terms"
