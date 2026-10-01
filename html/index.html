@@ -25,8 +25,17 @@
           ☰
         </button>
         <nav class="menu" data-menu-lista aria-label="Navegação principal" hidden>
-          <a href="index.html" data-nav>Início</a><a href="projetos.html" data-nav>Projetos</a
-          ><a href="cadastro.html" data-nav>Voluntariado</a>
+          <a href="index.html" data-nav>Início</a>
+          <details class="menu-dropdown">
+            <summary>Projetos</summary>
+            <div class="menu-dropdown-links">
+              <a href="projetos.html" data-nav>Todos os projetos</a>
+              <a href="projetos.html#educacao" data-nav>Educação</a>
+              <a href="projetos.html#alimento" data-nav>Alimentação</a>
+              <a href="projetos.html#verde" data-nav>Meio ambiente</a>
+            </div>
+          </details>
+          <a href="cadastro.html" data-nav>Voluntariado</a>
         </nav>
       </div>
     </header>

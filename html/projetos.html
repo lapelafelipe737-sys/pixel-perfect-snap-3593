@@ -25,8 +25,17 @@
           ☰
         </button>
         <nav class="menu" data-menu-lista aria-label="Navegação principal" hidden>
-          <a href="index.html" data-nav>Início</a><a href="projetos.html" data-nav>Projetos</a
-          ><a href="cadastro.html" data-nav>Voluntariado</a>
+          <a href="index.html" data-nav>Início</a>
+          <details class="menu-dropdown">
+            <summary>Projetos</summary>
+            <div class="menu-dropdown-links">
+              <a href="projetos.html" data-nav>Todos os projetos</a>
+              <a href="projetos.html#educacao" data-nav>Educação</a>
+              <a href="projetos.html#alimento" data-nav>Alimentação</a>
+              <a href="projetos.html#verde" data-nav>Meio ambiente</a>
+            </div>
+          </details>
+          <a href="cadastro.html" data-nav>Voluntariado</a>
         </nav>
       </div>
     </header>
@@ -62,6 +71,14 @@
           </div>
         </div>
       </section>
+      <dialog class="modal-projeto" data-modal-projeto aria-labelledby="modal-titulo">
+        <div class="modal-conteudo">
+          <p class="sobretitulo">Conheça a iniciativa</p>
+          <h2 id="modal-titulo" data-modal-titulo></h2>
+          <p data-modal-texto></p>
+          <button class="botao" type="button" data-fechar-modal>Fechar</button>
+        </div>
+      </dialog>
     </main>
     <footer class="rodape">
       <div class="container">
