@@ -25,7 +25,7 @@ const projects = [
 ];
 
 function ProjectsPage() {
-  const [selected, setSelected] = useState<(typeof projects)[number] | null>(null);
+  const [selected, setSelected] = useState<{ title: string; text: string } | null>(null);
   return (
     <main id="conteudo">
       <section className="bg-primary py-20 text-primary-foreground sm:py-28">
