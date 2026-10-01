@@ -343,7 +343,7 @@ function VolunteerPage() {
               />
             </Field>
             <div className="sm:col-span-2">
-              <label className="flex cursor-pointer items-start gap-3 text-sm leading-6">
+              <div className="flex items-start gap-3 text-sm leading-6">
                 <input
                   id="terms"
                   name="terms"
@@ -353,11 +353,11 @@ function VolunteerPage() {
                   aria-invalid={Boolean(errors["terms"])}
                   aria-describedby={errors["terms"] ? "terms-error" : undefined}
                 />
-                <span>
+                <label htmlFor="terms" className="cursor-pointer">
                   Concordo com o uso dos meus dados exclusivamente para contato sobre atividades de
                   voluntariado.
-                </span>
-              </label>
+                </label>
+              </div>
               {errors["terms"] && (
                 <p id="terms-error" className="mt-1 text-xs font-semibold text-destructive">
                   {errors["terms"]}
