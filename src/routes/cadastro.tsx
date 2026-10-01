@@ -352,10 +352,6 @@ function VolunteerPage() {
                   className="mt-1 size-5 shrink-0 accent-primary"
                   aria-invalid={Boolean(errors["terms"])}
                   aria-describedby={errors["terms"] ? "terms-error" : undefined}
-                  onChange={(event) => {
-                    if (event.currentTarget.checked)
-                      setErrors((current) => ({ ...current, terms: "" }));
-                  }}
                 />
                 <span>
                   Concordo com o uso dos meus dados exclusivamente para contato sobre atividades de
