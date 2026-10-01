@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Heart, Leaf, PackageCheck, X } from "lucide-react";
+import { ArrowRight, BookOpen, Heart, Leaf, PackageCheck } from "lucide-react";
 import { useState } from "react";
 
 import foodImage from "@/assets/projeto-alimento.jpg";
