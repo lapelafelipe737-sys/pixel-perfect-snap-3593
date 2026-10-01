@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Heart, Leaf, PackageCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import foodImage from "@/assets/projeto-alimento.jpg";
 import educationImage from "@/assets/projeto-educacao.jpg";
 import greenImage from "@/assets/projeto-verde.jpg";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/projetos")({
   head: () => ({
@@ -63,15 +64,6 @@ const projects = [
 
 function ProjectsPage() {
   const [selected, setSelected] = useState<{ title: string; text: string } | null>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (selected && !dialog.open) dialog.showModal();
-    if (!selected && dialog.open) dialog.close();
-  }, [selected]);
-
   return (
     <main id="conteudo">
       <section className="bg-primary py-20 text-primary-foreground sm:py-28">
@@ -162,22 +154,19 @@ function ProjectsPage() {
         </div>
       </section>
 
-      <dialog
-        ref={dialogRef}
-        aria-labelledby="projeto-modal-titulo"
-        className="m-auto w-[calc(100%-2rem)] max-w-lg border border-border bg-background p-0 text-foreground shadow-lg backdrop:bg-modal-backdrop"
-        onClose={() => setSelected(null)}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) event.currentTarget.close();
+      <Dialog
+        open={Boolean(selected)}
+        onOpenChange={(open) => {
+          if (!open) setSelected(null);
         }}
       >
-        {selected ? (
-          <div className="grid gap-4 p-7 sm:p-10">
+        {selected && (
+          <DialogContent className="max-w-lg rounded-none p-7 sm:p-10">
             <span className="badge">Informações</span>
-            <h2 id="projeto-modal-titulo" className="pr-10 font-display text-3xl font-bold">
+            <DialogTitle className="pr-10 font-display text-3xl font-bold">
               {selected.title}
-            </h2>
-            <p className="text-base leading-7 text-muted-foreground">{selected.text}</p>
+            </DialogTitle>
+            <DialogDescription className="text-base leading-7">{selected.text}</DialogDescription>
             <p className="text-sm font-semibold">
               Quer participar? Nosso cadastro leva menos de três minutos.
             </p>
@@ -186,17 +175,9 @@ function ProjectsPage() {
                 Quero participar <ArrowRight className="size-4" />
               </Link>
             </Button>
-            <button
-              type="button"
-              aria-label="Fechar"
-              className="absolute right-4 top-4 grid size-11 place-items-center text-2xl"
-              onClick={() => dialogRef.current?.close()}
-            >
-              ×
-            </button>
-          </div>
-        ) : null}
-      </dialog>
+          </DialogContent>
+        )}
+      </Dialog>
     </main>
   );
 }
