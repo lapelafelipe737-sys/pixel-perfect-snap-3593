@@ -14,8 +14,9 @@ function academicDeliverablePlugin() {
   return {
     name: "academic-deliverable",
     apply: "build" as const,
-    async closeBundle() {
-      const output = resolve("dist/client");
+    async writeBundle(options: { dir?: string }) {
+      if (!options.dir?.endsWith("/client")) return;
+      const output = resolve(options.dir);
       await mkdir(output, { recursive: true });
       await Promise.all(
         academicFolders.map((folder) =>
