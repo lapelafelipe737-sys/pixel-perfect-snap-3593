@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, HeartHandshake, ShieldCheck, UserRound } from "lucide-react";
-import { type FocusEvent, type FormEvent, type ReactElement, useState } from "react";
+import { cloneElement, type FocusEvent, type FormEvent, type ReactElement, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { interestOptions, maskCep, maskCpf, maskPhone, saveVolunteer, volunteerSchema } from "@/lib/volunteer";
+import { interestOptions, loadLatestVolunteer, maskCep, maskCpf, maskPhone, saveVolunteer, volunteerSchema } from "@/lib/volunteer";
 
 export const Route = createFileRoute("/cadastro")({
   head: () => ({ meta: [
@@ -21,6 +21,18 @@ type Errors = Record<string, string>;
 function VolunteerPage() {
   const [errors, setErrors] = useState<Errors>({});
   const [success, setSuccess] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    const latest = loadLatestVolunteer();
+    const form = formRef.current;
+    if (!latest || !form) return;
+    Object.entries(latest).forEach(([name, value]) => {
+      const field = form.elements.namedItem(name);
+      if (field instanceof HTMLInputElement && field.type === "checkbox") field.checked = Boolean(value);
+      else if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement) field.value = String(value);
+    });
+  }, []);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,7 +53,7 @@ function VolunteerPage() {
     window.setTimeout(() => setSuccess(false), 5000);
   }
 
-  function validateField(event: FocusEvent<HTMLInputElement | HTMLSelectElement>) {
+  function validateField(event: FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const form = event.currentTarget.form;
     if (!form) return;
     const values = Object.fromEntries(new FormData(form).entries());
@@ -71,7 +83,7 @@ function VolunteerPage() {
           </div>
         </aside>
 
-        <form noValidate onSubmit={submit} className="bg-background p-6 shadow-sm sm:p-10 lg:col-span-8" aria-label="Cadastro de voluntário">
+        <form ref={formRef} onSubmit={submit} className="bg-background p-6 shadow-sm sm:p-10 lg:col-span-8" aria-label="Cadastro de voluntário">
           <div className="border-b border-border pb-6"><p className="text-sm font-bold text-accent">Cadastro de voluntário</p><h2 className="mt-2 font-display text-3xl font-bold">Dados pessoais</h2><p className="mt-2 text-sm text-muted-foreground">Todos os campos são obrigatórios.</p></div>
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <Field id="name" label="Nome completo" error={errors['name']} className="sm:col-span-2"><input id="name" name="name" type="text" required minLength={3} maxLength={100} autoComplete="name" onBlur={validateField} /></Field>
@@ -88,6 +100,14 @@ function VolunteerPage() {
             <Field id="city" label="Cidade" error={errors['city']}><input id="city" name="city" type="text" required minLength={2} maxLength={80} autoComplete="address-level2" onBlur={validateField} /></Field>
             <Field id="state" label="Estado" error={errors['state']}><select id="state" name="state" required autoComplete="address-level1" defaultValue="" onBlur={validateField}><option value="" disabled>Selecione</option>{['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'].map((state) => <option key={state}>{state}</option>)}</select></Field>
             <Field id="interest" label="Área de interesse" error={errors['interest']} className="sm:col-span-2"><select id="interest" name="interest" required defaultValue="" onBlur={validateField}><option value="" disabled>Como você gostaria de ajudar?</option>{interestOptions.map((option) => <option key={option}>{option}</option>)}</select></Field>
+            <Field id="message" label="Mensagem" hint="10 a 500 caracteres" error={errors['message']} className="sm:col-span-2"><textarea id="message" name="message" required minLength={10} maxLength={500} rows={5} onBlur={validateField} /></Field>
+            <div className="sm:col-span-2">
+              <label htmlFor="terms" className="flex cursor-pointer items-start gap-3 text-sm leading-6">
+                <input id="terms" name="terms" type="checkbox" required className="mt-1 size-5 shrink-0 accent-primary" aria-invalid={Boolean(errors['terms'])} aria-describedby={errors['terms'] ? "terms-error" : undefined} onChange={(event) => { if (event.currentTarget.checked) setErrors((current) => ({ ...current, terms: '' })); }} />
+                <span>Concordo com o uso dos meus dados exclusivamente para contato sobre atividades de voluntariado.</span>
+              </label>
+              {errors['terms'] && <p id="terms-error" className="mt-1 text-xs font-semibold text-destructive">{errors['terms']}</p>}
+            </div>
           </div>
           {Object.keys(errors).some((key) => errors[key]) && <div role="alert" className="mt-7 border-l-4 border-destructive bg-error-soft p-4 text-sm text-destructive">Revise os campos destacados antes de enviar.</div>}
           <div className="mt-8 flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between"><p className="max-w-sm text-xs leading-5 text-muted-foreground">Ao enviar, você concorda com o uso destes dados para contato sobre voluntariado.</p><Button type="submit" size="lg">Enviar cadastro</Button></div>
@@ -100,5 +120,6 @@ function VolunteerPage() {
 }
 
 function Field({ id, label, hint, error, className = '', children }: { id: string; label: string; hint?: string | undefined; error?: string | undefined; className?: string | undefined; children: ReactElement }) {
-  return <div className={`field ${className}`}><div className="flex items-baseline justify-between gap-3"><label htmlFor={id}>{label}</label>{hint && <span className="text-xs text-muted-foreground">{hint}</span>}</div><div className={error ? 'field-control field-error' : 'field-control'}>{children}</div>{error && <p id={`${id}-error`} className="text-xs font-semibold text-destructive">{error}</p>}</div>;
+  const control = cloneElement(children, { 'aria-invalid': Boolean(error), 'aria-describedby': error ? `${id}-error` : undefined });
+  return <div className={`field ${className}`}><div className="flex items-baseline justify-between gap-3"><label htmlFor={id}>{label}</label>{hint && <span className="text-xs text-muted-foreground">{hint}</span>}</div><div className={error ? 'field-control field-error' : 'field-control'}>{control}</div>{error && <p id={`${id}-error`} className="text-xs font-semibold text-destructive">{error}</p>}</div>;
 }

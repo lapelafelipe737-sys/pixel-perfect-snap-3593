@@ -6,6 +6,7 @@ import foodImage from "@/assets/projeto-alimento.jpg";
 import educationImage from "@/assets/projeto-educacao.jpg";
 import greenImage from "@/assets/projeto-verde.jpg";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/projetos")({
   head: () => ({ meta: [
@@ -57,13 +58,15 @@ function ProjectsPage() {
         </div>
       </section>
 
-      {selected && <div className="fixed inset-0 z-[60] grid place-items-center bg-modal-backdrop p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelected(null); }}>
-        <div className="relative w-full max-w-lg bg-background p-7 shadow-2xl sm:p-10">
-          <Button variant="ghost" size="icon" className="absolute right-3 top-3" aria-label="Fechar" onClick={() => setSelected(null)}><X /></Button>
-          <span className="badge">Informações</span><h2 id="modal-title" className="mt-6 pr-10 font-display text-3xl font-bold">{selected.title}</h2><p className="mt-4 leading-7 text-muted-foreground">{selected.text}</p><p className="mt-5 text-sm font-semibold">Quer participar? Nosso cadastro leva menos de três minutos.</p>
-          <Button asChild className="mt-7"><Link to="/cadastro">Quero participar <ArrowRight className="size-4" /></Link></Button>
-        </div>
-      </div>}
+      <Dialog open={Boolean(selected)} onOpenChange={(open) => { if (!open) setSelected(null); }}>
+        {selected && <DialogContent className="max-w-lg rounded-none p-7 sm:p-10">
+          <span className="badge">Informações</span>
+          <DialogTitle className="pr-10 font-display text-3xl font-bold">{selected.title}</DialogTitle>
+          <DialogDescription className="text-base leading-7">{selected.text}</DialogDescription>
+          <p className="text-sm font-semibold">Quer participar? Nosso cadastro leva menos de três minutos.</p>
+          <Button asChild className="mt-3 w-fit"><Link to="/cadastro">Quero participar <ArrowRight className="size-4" /></Link></Button>
+        </DialogContent>}
+      </Dialog>
     </main>
   );
 }
