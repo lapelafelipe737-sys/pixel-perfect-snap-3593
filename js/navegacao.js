@@ -25,7 +25,9 @@ async function renderizar(url) {
     principal.replaceWith(novoPrincipal);
     document.title = pagina.title;
     document.dispatchEvent(new CustomEvent("pagina:renderizada"));
-    document.getElementById("conteudo")?.focus({ preventScroll: true });
+    const alvo = url.hash ? document.querySelector(url.hash) : document.getElementById("conteudo");
+    alvo?.focus({ preventScroll: true });
+    alvo?.scrollIntoView();
   } catch {
     principal.innerHTML =
       '<section class="secao pagina-erro"><h1>Não foi possível abrir a página</h1><p>Tente novamente em instantes.</p><a class="botao" href="index.html" data-nav>Voltar ao início</a></section>';
@@ -57,6 +59,7 @@ export function iniciarMenu() {
     menu.hidden = aberto;
   });
   document.addEventListener("click", (evento) => {
+    if (!(evento.target instanceof Element)) return;
     if (!evento.target.closest("[data-menu-lista] a")) return;
     botao.setAttribute("aria-expanded", "false");
     menu.hidden = true;

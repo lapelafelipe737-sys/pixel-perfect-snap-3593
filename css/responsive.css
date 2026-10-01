@@ -1,3 +1,13 @@
+@media (min-width: 320px) {
+  .container {
+    width: min(calc(100% - 2rem), 76rem);
+  }
+}
+@media (max-width: 480px) {
+  .menu-dropdown-links {
+    min-width: 100%;
+  }
+}
 @media (max-width: 1200px) {
   .container {
     width: min(calc(100% - 4rem), 70rem);
@@ -42,6 +52,11 @@
   .menu a {
     min-height: 44px;
   }
+  .menu-dropdown-links {
+    position: static;
+    border: 0;
+    box-shadow: none;
+  }
   .hero-conteudo,
   .texto-principal,
   .texto-apoio,
@@ -57,6 +72,11 @@
   }
   .secao {
     padding-block: 3.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .projeto-card {
+    min-height: 24rem;
   }
 }
 @media (min-width: 769px) {

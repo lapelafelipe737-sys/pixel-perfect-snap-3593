@@ -105,6 +105,32 @@ a {
 .menu a:hover {
   color: var(--azul);
 }
+.menu-dropdown {
+  position: relative;
+}
+.menu-dropdown summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.menu-dropdown summary::marker {
+  content: "";
+}
+.menu-dropdown-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 14rem;
+  border: 1px solid var(--borda);
+  background: var(--branco);
+  box-shadow: var(--sombra);
+}
+.menu-dropdown-links a {
+  display: block;
+}
 .menu-botao {
   display: none;
   min-width: 44px;
@@ -282,6 +308,23 @@ p {
   border-left: 3px solid var(--amarelo);
   padding-left: 1rem;
 }
+.projeto-acoes {
+  margin-top: 1.25rem;
+}
+.modal-projeto {
+  width: min(calc(100% - 2rem), 34rem);
+  border: 0;
+  border-radius: var(--raio);
+  padding: 0;
+  color: var(--texto);
+  box-shadow: var(--sombra);
+}
+.modal-projeto::backdrop {
+  background: rgba(16, 63, 47, 0.76);
+}
+.modal-conteudo {
+  padding: 2rem;
+}
 .formulario {
   grid-column: 5 / span 8;
   background: var(--branco);
@@ -338,6 +381,11 @@ p {
   height: 1.25rem;
 }
 .sucesso {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  max-width: min(24rem, calc(100% - 2rem));
   border-left: 4px solid var(--sucesso);
   background: #e8f5ec;
   padding: 1rem;

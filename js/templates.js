@@ -42,9 +42,16 @@ export function criarCardsProjetos() {
         <h2>${projeto.titulo}</h2>
         <p>${projeto.descricao}</p>
         <strong>${projeto.impacto}</strong>
-        <a class="botao botao-contorno" href="cadastro.html" data-nav>Quero participar</a>
+        <div class="acoes projeto-acoes">
+          <button class="botao botao-contorno" type="button" data-abrir-modal="${projeto.id}">Saiba como funciona</button>
+          <a class="botao" href="cadastro.html" data-nav>Quero participar</a>
+        </div>
       </div>
     </article>`,
     )
     .join("");
+}
+
+export function obterProjeto(id) {
+  return projetos.find((projeto) => projeto.id === id);
 }
