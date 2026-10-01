@@ -5,4 +5,4 @@
 - [x] Completar README e decisões técnicas
 - [x] Validar compilação, páginas, formulário, navegação, teclado e responsividade
 - [x] Corrigir falhas confirmadas pela segunda auditoria no código real
-- [ ] Revalidar integralmente as duas versões e a publicação
+- [x] Revalidar integralmente as duas versões e a publicação
