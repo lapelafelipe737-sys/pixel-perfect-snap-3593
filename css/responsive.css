@@ -1,0 +1,8 @@
+@media(max-width:1200px){.container{width:min(calc(100% - 4rem),70rem)}}
+@media(max-width:992px){.hero-conteudo{grid-column:1/span 9}.texto-principal{grid-column:1/span 6}.texto-apoio{grid-column:7/span 6}.formulario{grid-column:3/span 8}.projeto-card img,.projeto-conteudo{grid-column:span 6}}
+@media(max-width:768px){.menu-botao{display:block}.menu{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--borda);background:var(--branco);padding:1rem}.menu[hidden]{display:none}.menu a{min-height:44px}.hero-conteudo,.texto-principal,.texto-apoio,.formulario{grid-column:1/-1}.cards{flex-direction:column}.projeto-card img,.projeto-conteudo{grid-column:1/-1}.secao{padding-block:3.5rem}}
+@media(min-width:769px){.menu{display:flex!important}}
+@media(max-width:576px){.container{width:min(calc(100% - 2rem),100%)}.form-grid{grid-template-columns:1fr}.campo{grid-column:1}.acoes{flex-direction:column}.botao{width:100%}.rodape .container{flex-direction:column}}
+@media(max-width:400px){h1{font-size:2.5rem}.hero-conteudo{padding-block:4rem}.formulario,.projeto-conteudo,.card{padding:1.25rem}}
+@media(min-width:1440px){.container{max-width:80rem}.secao{padding-block:6rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
