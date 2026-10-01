@@ -83,7 +83,7 @@ function VolunteerPage() {
           </div>
         </aside>
 
-        <form ref={formRef} onSubmit={submit} className="bg-background p-6 shadow-sm sm:p-10 lg:col-span-8" aria-label="Cadastro de voluntário">
+        <form ref={formRef} noValidate onSubmit={submit} className="bg-background p-6 shadow-sm sm:p-10 lg:col-span-8" aria-label="Cadastro de voluntário">
           <div className="border-b border-border pb-6"><p className="text-sm font-bold text-accent">Cadastro de voluntário</p><h2 className="mt-2 font-display text-3xl font-bold">Dados pessoais</h2><p className="mt-2 text-sm text-muted-foreground">Todos os campos são obrigatórios.</p></div>
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <Field id="name" label="Nome completo" error={errors['name']} className="sm:col-span-2"><input id="name" name="name" type="text" required minLength={3} maxLength={100} autoComplete="name" onBlur={validateField} /></Field>
