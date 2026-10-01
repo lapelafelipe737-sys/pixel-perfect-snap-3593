@@ -90,7 +90,9 @@ function VolunteerPage() {
       createdAt: new Date().toISOString(),
     });
     if (!saved) {
-      setErrors({ form: "Não foi possível salvar neste dispositivo. Libere espaço e tente novamente." });
+      setErrors({
+        form: "Não foi possível salvar neste dispositivo. Libere espaço e tente novamente.",
+      });
       setSuccess(false);
       return;
     }
