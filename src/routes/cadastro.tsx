@@ -360,7 +360,6 @@ function VolunteerPage() {
                   name="terms"
                   type="checkbox"
                   required
-                  onChange={validateField}
                   className="mt-1 size-5 shrink-0 accent-primary"
                   aria-invalid={Boolean(errors["terms"])}
                   aria-describedby={errors["terms"] ? "terms-error" : undefined}
