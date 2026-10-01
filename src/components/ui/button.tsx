@@ -9,9 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground shadow-sm hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md",
-        secondary: "bg-secondary text-secondary-foreground hover:-translate-y-0.5 hover:bg-secondary/85",
-        outline: "border border-border bg-background text-foreground hover:border-primary hover:text-primary",
+        primary:
+          "bg-primary text-primary-foreground shadow-sm hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:-translate-y-0.5 hover:bg-secondary/85",
+        outline:
+          "border border-border bg-background text-foreground hover:border-primary hover:text-primary",
         ghost: "text-foreground hover:bg-muted",
         light: "bg-surface-bright text-primary hover:-translate-y-0.5 hover:bg-surface-bright/90",
       },
@@ -29,9 +32,14 @@ const buttonVariants = cva(
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & { asChild?: boolean };
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({ className, variant, size, asChild = false, ...props }, ref) {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { className, variant, size, asChild = false, ...props },
+  ref,
+) {
   const Component = asChild ? Slot : "button";
-  return <Component ref={ref} className={cn(buttonVariants({ variant, size }), className)} {...props} />;
+  return (
+    <Component ref={ref} className={cn(buttonVariants({ variant, size }), className)} {...props} />
+  );
 });
 
-export { Button, buttonVariants };
+export { Button };

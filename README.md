@@ -75,7 +75,7 @@ bun run build
 bun run preview
 ```
 
-O resultado pode ser publicado pela Lovable, Vercel ou plataforma equivalente compatível com TanStack Start. Nenhuma URL de repositório ou publicação é informada porque ela ainda não foi criada.
+O resultado pode ser publicado pela Lovable, Vercel ou plataforma equivalente compatível com TanStack Start. Durante o build, as pastas acadêmicas são copiadas para a saída pública, mantendo `/html/index.html` disponível também após o deploy. Nenhuma URL de repositório ou publicação é informada porque ela ainda não foi criada.
 
 ## Versionamento
 
